@@ -1,9 +1,42 @@
 #include <iostream>
+#include <cstdlib>//add random numbers
+#include <ctime>
+
 
 using namespace std;
 
+
+void printSometing(int x);
+void printSometing(float x);//overoad the same function
+int timesTwo(int x);
+int addNumbers(int x, int y);
+int factorial(int n);
+void printArray(int arrp[], int size);
+void passRef(int *x);
+
+class BankAccount {
+public:
+    BankAccount(string x) {   //constructors, suto executed when class be instanted.used to set default values.
+        name = x;
+    }
+    void setName(string x)
+    {
+        name = x;
+    }
+    string getName()
+    {
+        return name;
+    }
+private://default is private
+    string name;
+};
+
+
+
 int main()
 {
+    srand(time(0));//time(0) is current time seconds, srand is used to use and seed value to generate random numbers use rand()
+    
     cout << "Hello world!" << "this is marco!" << endl;
     cout << "this is my first c++ project.\n\n";
     cout << "new line" << endl;
@@ -17,7 +50,7 @@ int main()
 
     int input1;
     cin >> input1;
-    cout << input1 + "\n";
+    cout << input1 << "\n";
 
     if (2 > 3) {
         cout << "true\n";
@@ -125,18 +158,38 @@ int main()
 
     int *p1 = NULL;
     p1 = new int[5];
-    delete [] p;//delete array, pointed by p1.
+    delete p1;//delete array, pointed by p1.
 
     cout << "char: " << sizeof(char) << endl;
     int num[10];
     cout << sizeof(num) << endl;
 
-
-
-
-
-
-
+    float var15 = 45.678;
+    printSometing(23);
+    printSometing(var15);
+    
+    cout << timesTwo(45) << endl;
+    
+    cout << addNumbers(3, 5) << endl;
+    
+    for (int x = 0; x < 5; x++) {
+        cout << 1 +(rand() % 6) << endl;
+    }
+    
+    
+    cout << factorial(5) << endl;
+    
+    int myArr[3] = {33, 44, 55};
+    printArray(myArr, 3);
+    
+    int var17 = 20;
+    passRef(&var17);//referenced in the function
+    cout << "var17: " << var17 <<endl;
+    
+    BankAccount test1("jim");
+    //test1.setName("marco");
+    cout << test1.getName() << endl;
+    
 
 
 
@@ -148,4 +201,45 @@ int main()
 multi lines
 */
 
+void printSometing(int x)
+{
+    cout << x << endl;
+}
 
+void printSometing(float x)
+{
+    cout << x << endl;
+}
+
+int timesTwo(int x)
+{
+    return x*2;
+}
+
+int addNumbers(int x, int y)
+{
+    int result = x + y;
+    return result;
+}
+
+int factorial(int n)//reursion function.
+{
+    if (n == 1) {
+        return 1;
+    }
+    else {
+        return n * factorial(n-1);
+    }
+}
+
+void printArray(int arrp[], int size)
+{
+    for (int x = 0; x < size; x++) {
+        cout << arrp[x] << endl;
+    }
+}
+
+void passRef(int *x)//pass by reference.
+{
+    *x = 100;
+}
