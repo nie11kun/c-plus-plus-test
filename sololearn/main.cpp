@@ -1,7 +1,9 @@
 #include <iostream>
 #include <cstdlib>//add random numbers
 #include <ctime>
-
+#include "MyClass.h"
+#include "Brithday.h"
+#include "Person.h"
 
 using namespace std;
 
@@ -13,6 +15,124 @@ int addNumbers(int x, int y);
 int factorial(int n);
 void printArray(int arrp[], int size);
 void passRef(int *x);
+void nameValue(Person &obj);
+
+
+template <class T>
+class TestSpeac
+{
+public:
+    TestSpeac(T x)
+    {
+        cout << x << " - not a char" << endl;
+    }
+};
+template <>//Template Specialization
+class TestSpeac<char>
+{
+public:
+    TestSpeac(char x)
+    {
+        cout << x << " - is a char" << endl;
+    }
+};
+
+
+template <class T>
+class PairValue
+{
+private:
+    T frist, second;
+public:
+    PairValue(T a, T b)
+    :frist(a), second(b)
+    {
+    }
+    T bigger();//define the function out of the class.
+};
+template <class T>
+T PairValue<T>::bigger()//define the template function out of the class in this way. may be in different files.
+{
+    return (frist > second ? frist: second);
+}
+
+
+template <class T, class U>
+T smaller(T a, U b)
+{
+    return (a<b ? a : b);
+}
+
+template <class T>//or can be like: template <typename  T>.
+T sumT(T a, T b)
+{
+    return a + b;
+}
+
+class Enemy
+{
+public:
+    void setAttackPower(int a)
+    {
+        attackPower = a;
+    }
+    virtual void attack()//virtual function used to make it possible direct control derived class. pointer.
+    //virtual void attack() ==0 // pure virtual function. this is abstract class. only been use as base class.
+    {
+    }
+protected:
+    int attackPower;
+};
+
+class Ninja: public Enemy
+{
+public:
+    void attack()
+    {
+        cout << "Ninja! - " << attackPower << endl;
+    }
+};
+
+class Monster: public Enemy
+{
+public:
+    void attack()
+    {
+        cout << "Monster! - " << attackPower << endl;
+    }
+};
+
+
+class Mother
+{
+public:
+    Mother()
+    {
+        cout << "mother ctor" << endl;
+    }
+    ~Mother()
+    {
+        cout << "mother dtor" << endl;
+    }
+    void sayHi()
+    {
+        cout << "Hi" << endl;
+    }
+};
+class Daughter: public Mother//public members been inherited as public, if is protected: public and protected members as protected member in new class, private: both is as private in new class. private is default mode.
+{
+public:
+    Daughter()
+    {
+        cout << "daughter ctor" << endl;
+    }
+    ~Daughter()
+    {
+        cout << "daughter dtor" << endl;
+    }
+};
+
+
 
 class BankAccount {
 public:
@@ -31,12 +151,19 @@ private://default is private
     string name;
 };
 
+class Test1 {
+public:
+    Test1(int x): var1(x) {//init const value must in this way.
 
+    }
+private:
+    const int var1;
+};
 
 int main()
 {
     srand(time(0));//time(0) is current time seconds, srand is used to use and seed value to generate random numbers use rand()
-    
+
     cout << "Hello world!" << "this is marco!" << endl;
     cout << "this is my first c++ project.\n\n";
     cout << "new line" << endl;
@@ -167,29 +294,85 @@ int main()
     float var15 = 45.678;
     printSometing(23);
     printSometing(var15);
-    
+
     cout << timesTwo(45) << endl;
-    
+
     cout << addNumbers(3, 5) << endl;
-    
+
     for (int x = 0; x < 5; x++) {
         cout << 1 +(rand() % 6) << endl;
     }
-    
-    
+
+
     cout << factorial(5) << endl;
-    
+
     int myArr[3] = {33, 44, 55};
     printArray(myArr, 3);
-    
+
     int var17 = 20;
     passRef(&var17);//referenced in the function
     cout << "var17: " << var17 <<endl;
-    
+
     BankAccount test1("jim");
     //test1.setName("marco");
     cout << test1.getName() << endl;
-    
+
+    const MyClass obj1(1, 3, 4);
+    obj1.myPrint();//only constant behavir can be use in const instance.
+
+    const MyClass *ptr = &obj1;
+    ptr->myPrint();
+
+
+    Brithday br1(11, 25, 1989);
+    Person ps1("marco", br1);
+    ps1.printInfo();
+
+    nameValue(ps1);//access private value, using friend function.
+    ps1.printInfo();
+
+
+    MyClass cls1(1, 2, 3);
+    MyClass cls2(2, 3, 4);
+    MyClass cls3 = cls1 + cls2;
+    cls3.myPrint();
+
+    Daughter d;
+    d.sayHi();
+
+    Ninja n;
+    Monster m;
+    Enemy *p11 = &n;
+    Enemy *p22 = &m;
+    p11->setAttackPower(15);
+    p22->setAttackPower(20);
+    p11->attack();
+    p22->attack();
+
+
+    double var20 = 7.5, var21 = 8.9;
+    cout << sumT(var20, var21) << endl;
+
+    PairValue <int> obj3(2, 6);//template class must define the type when use.
+    cout << obj3.bigger() << endl;
+    PairValue <double> obj4(3.5, 5.7);
+    cout << obj4.bigger() << endl;
+
+
+    TestSpeac<int> obj5(5);//Template Specialization
+    TestSpeac<char> obj6('a');
+
+
+    try {
+        int sonAge = 10;
+        int dadAge = 5;
+        if (sonAge > dadAge) {
+            throw 99;
+        }
+    }
+    catch(int x) {// ... catch every condition.
+        cout << "Wrong age values - Error " << x << endl;
+    }
 
 
 
@@ -242,4 +425,9 @@ void printArray(int arrp[], int size)
 void passRef(int *x)//pass by reference.
 {
     *x = 100;
+}
+
+void nameValue(Person &obj)//friend function defined in person.h
+{
+    obj.name = "marco nie";
 }

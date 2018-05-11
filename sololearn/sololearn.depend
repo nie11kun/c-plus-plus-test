@@ -1,4 +1,30 @@
 # depslib dependency file v1.0
-1525937309 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\main.cpp
+1526005821 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"MyClass.h"
+	"Brithday.h"
+	"Person.h"
+
+1526005713 c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\myclass.h
+
+1526017351 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\myclass.cpp
+	"MyClass.h"
+	<iostream>
+
+1526003841 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\brithday.cpp
+	"Brithday.h"
+	<iostream>
+
+1526003229 c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\brithday.h
+
+1526003302 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\person.cpp
+	"Person.h"
+	"Brithday.h"
+	<iostream>
+
+1526003582 c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\person.h
+	"Brithday.h"
 	<iostream>
 
