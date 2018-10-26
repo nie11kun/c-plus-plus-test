@@ -1,11 +1,13 @@
 # depslib dependency file v1.0
-1526005821 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\main.cpp
+1526266767 source:c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
 	"MyClass.h"
 	"Brithday.h"
 	"Person.h"
+	"fstream"
+	<string>
 
 1526005713 c:\users\hj_nk\documents\github\c-plus-plus-test\sololearn\myclass.h
 

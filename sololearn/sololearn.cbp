@@ -29,6 +29,32 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="Horizon Juicer">
+				<Option output="bin/Horizon Juicer/sololearn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Horizon Juicer/" />
+				<Option object_output="obj/Horizon Juicer/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="BoostTest">
+				<Option output="bin/BoostTest/sololearn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/BoostTest/" />
+				<Option object_output="obj/BoostTest/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />

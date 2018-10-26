@@ -4,8 +4,13 @@
 #include "MyClass.h"
 #include "Brithday.h"
 #include "Person.h"
+#include "fstream"
+#include <string>
+#include <boost/filesystem.hpp>
+
 
 using namespace std;
+namespace fs = boost::filesystem;
 
 
 void printSometing(int x);
@@ -17,6 +22,13 @@ void printArray(int arrp[], int size);
 void passRef(int *x);
 void nameValue(Person &obj);
 
+string strTest(string x, char y)
+{
+    string line;
+    int i = x.find_first_of(y);
+    line = x.substr(0, i);
+    return line;
+}
 
 template <class T>
 class TestSpeac
@@ -360,7 +372,7 @@ int main()
 
 
     TestSpeac<int> obj5(5);//Template Specialization
-    TestSpeac<char> obj6('a');
+    TestSpeac<char> obj6(';');
 
 
     try {
@@ -373,6 +385,31 @@ int main()
     catch(int x) {// ... catch every condition.
         cout << "Wrong age values - Error " << x << endl;
     }
+
+
+    fstream Myfile1;
+    Myfile1.open("test1.txt", ios::app);//ios::trunc-delete content if have content.
+    if (Myfile1.is_open()) {
+        Myfile1 << "this is a test.\n";
+    }
+    else {
+        cout << "something was wrong.";
+    }
+    Myfile1.close();
+
+
+    fstream Myfile2("test1.txt");
+    string line;
+    string newline;
+    while(getline(Myfile2, line)) {
+        newline += strTest(line, 'a') + "\n";
+    }
+    Myfile2.close();
+
+    ofstream Myfile3;
+    Myfile3.open("B_DRESS.SPF", ios::trunc);
+    Myfile3 << newline;
+    Myfile3.close();
 
 
 
@@ -431,3 +468,27 @@ void nameValue(Person &obj)//friend function defined in person.h
 {
     obj.name = "marco nie";
 }
+
+typedef struct   //same as below defined look in c++
+{
+    int a, b;
+}
+point;
+
+struct point1
+{
+    int a, b;
+}
+
+point1 add(point1 a, point1 b)
+{
+    point1 c;
+    c.a = a.a + b.a;
+    c.b = a.b + b.b;
+    return c;
+}
+
+int abc;
+
+abc def;
+
