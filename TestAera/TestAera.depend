@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1540609336 source:c:\users\hj_nk\documents\github\c-plus-plus-test\testaera\main.cpp
+	<iostream>
+	<map>
+	<string>
+	<windows.h>
+	<fstream>
+
