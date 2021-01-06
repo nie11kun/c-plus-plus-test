@@ -8,8 +8,6 @@
 #include <string>
 #include <boost/filesystem.hpp>
 
-
-
 using namespace std;
 namespace fs = boost::filesystem;
 
