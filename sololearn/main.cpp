@@ -12,7 +12,6 @@
 using namespace std;
 namespace fs = boost::filesystem;
 
-
 void printSometing(int x);
 void printSometing(float x);//overoad the same function
 int timesTwo(int x);
